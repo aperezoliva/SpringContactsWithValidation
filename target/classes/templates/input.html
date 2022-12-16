@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert new contact here</title>
+<script>
+	
+	function validateInput() {
+		let name = document.forms["form"]["name"].value; 
+		let relationship = document.forms["form"]["relationship"].value; 
+		let phone = document.forms["form"]["phone"].value; 
+		let street = document.forms["form"]["address.street"].value; 
+		let city = document.forms["form"]["address.city"].value; 
+		let state = document.forms["form"]["address.state"].value; 
+		
+		if (name == "") {
+			alert("Name must be filled out");
+			return false;
+		} 
+		if (relationship == "") {
+			alert("Relationship must be filled out");
+			return false;
+		} 
+		if (phone == "") {
+			alert("Phone must be filled out");
+			return false;
+		} 
+		if (street == "") {
+			alert("Street must be filled out");
+			return false;
+		} 
+		if (city == "") {
+			alert("City must be filled out");
+			return false;
+		} 
+		if (state == "") {
+			alert("State must be filled out");
+			return false;
+		} 
+	}
+</script>
+</head>
+<body>
+	<form name="form" th:object="${newContact}" th:action="@{/update/{id}(id=${newContact.id})}" method='POST' onsubmit="return validateInput()">
+	Name: <input name="name" size="20" th:field="*{name}"><br/>
+	Relationship: <input name="relationship" size="10" th:field="*{relationship}"><br />
+	Phone Number: <input name="phone" size="20" th:field="*{phone}"><br />
+	Street: <input name="address.street" size="20" th:field="*{address.street}"><br />
+	City: <input name="address.city" size="20" th:field="*{address.city}"><br />
+	State:<input name="address.state" size="20" th:field="*{address.state}"><br />
+	<input name="submit" type="submit" value="submit">
+	</form>
+<a href="viewAll">View all Contacts</a>
+</body>
+</html>
